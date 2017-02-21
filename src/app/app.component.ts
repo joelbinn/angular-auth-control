@@ -22,7 +22,8 @@ import {
     <h4>ACL exempel</h4>
 
     <div [jbReqAuth]="auth">
-      Auth: {{auth|json}} <button md-raised-button (click)="changeAuth()">Uppdatera auth</button>
+      <button md-raised-button (click)="changeAuth()">Uppdatera auth</button><br>
+      Auth: {{auth|json}}
     </div>
     <br>
     <form (ngSubmit)="submit()" autocomplete="off">

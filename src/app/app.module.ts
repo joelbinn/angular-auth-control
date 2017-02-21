@@ -8,9 +8,9 @@ import {NgModule} from '@angular/core';
 import {ENV_PROVIDERS} from './environment';
 // App is our top level component
 import {AppComponent} from './app.component';
-import {ACL_DIRECTIVES} from '../../acl/acl.directive';
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import {AclModule} from '../../acl';
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -18,13 +18,13 @@ import '../styles/headings.css';
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
-    AppComponent,
-    ACL_DIRECTIVES
+    AppComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AclModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS
