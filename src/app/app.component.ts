@@ -6,7 +6,6 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import { AppState } from './app.service';
 
 /*
  * App Component
@@ -19,59 +18,39 @@ import { AppState } from './app.service';
     './app.component.css'
   ],
   template: `
-    <nav>
-      <a [routerLink]=" ['./'] " routerLinkActive="active">
-        Index
-      </a>
-      <a [routerLink]=" ['./home'] " routerLinkActive="active">
-        Home
-      </a>
-      <a [routerLink]=" ['./detail'] " routerLinkActive="active">
-        Detail
-      </a>
-      <a [routerLink]=" ['./barrel'] " routerLinkActive="active">
-        Barrel
-      </a>
-      <a [routerLink]=" ['./about'] " routerLinkActive="active">
-        About
-      </a>
-    </nav>
+  <div [jbReqAuth]="['kaka']" data-rotmos>
+    <h4>ACL exempel</h4>
 
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
-    <footer>
-      <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
-      <div>
-        <a [href]="url">
-          <img [src]="angularclassLogo" width="25%">
-        </a>
-      </div>
-    </footer>
-  `
+    <div [jbReqAuth]="auth">
+      Auth: {{auth|json}} <button md-raised-button (click)="changeAuth()">Uppdatera auth</button>
+    </div>
+    <br>
+    <form (ngSubmit)="submit()" autocomplete="off">
+      <input
+        datatype="text"
+        [(ngModel)]="value"
+        placeholder="En sträng"
+        name="value"
+        autofocus>
+      <button md-raisebutton color="primary">Submit Value</button>
+    </form>
+  </div>
+ `
 })
-export class AppComponent implements OnInit {
-  public angularclassLogo = 'assets/img/angularclass-avatar.png';
-  public name = 'Angular 2 Webpack Starter';
-  public url = 'https://twitter.com/AngularClass';
+export class AppComponent {
+  value: string;
+  private auth: string[] = ['Banankaka'];
 
-  constructor(
-    public appState: AppState
-  ) {}
+  constructor() {
+  }
 
-  public ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+  submit(): void {
+    console.debug('Submit:', this.value);
+  }
+
+  changeAuth(): void {
+    console.debug("Changing auth");
+    this.auth.push(new Date().toISOString())
   }
 
 }
-
-/*
- * Please review the https://github.com/AngularClass/angular2-examples/ repo for
- * more angular app examples that you may copy/paste
- * (The examples may not be updated as quickly. Please open an issue on github for us to update it)
- * For help or questions please contact us at @AngularClass on twitter
- * or our chat on Slack at https://AngularClass.com/slack-join
- */
