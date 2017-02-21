@@ -10,9 +10,13 @@
 
   <hr>
 
-  <div>
+  <div [jbReqAuth]="['kaka']" data-rotmos>
     <h4>Local State</h4>
 
+    <div [jbReqAuth]="auth">
+      Auth: {{auth|json}} <button md-raised-button (click)="changeAuth()">Uppdatera auth</button>
+    </div>
+    <br>
     <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
 
       <input

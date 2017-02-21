@@ -40,4 +40,15 @@ export class HomeComponent implements OnInit {
     this.appState.set('value', value);
     this.localState.value = '';
   }
+
+  private auth:string[] = ['Banankaka'];
+  getAuth():string[] {
+    console.debug("Getting auth");
+    return this.auth;
+  }
+
+  changeAuth():void {
+    console.debug("Changing auth");
+    this.auth.push(new Date().toISOString())
+  }
 }
